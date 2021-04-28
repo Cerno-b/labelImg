@@ -1,0 +1,664 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>935</width>
+    <height>685</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout_3">
+    <item>
+     <widget class="QSpinBox" name="zoom_widget"/>
+    </item>
+    <item>
+     <widget class="QScrollArea" name="scroll_area">
+      <property name="widgetResizable">
+       <bool>true</bool>
+      </property>
+      <widget class="QWidget" name="scrollAreaWidgetContents">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>571</width>
+         <height>598</height>
+        </rect>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <item>
+         <widget class="QWidget" name="canvas" native="true"/>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>935</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="action_open"/>
+    <addaction name="action_open_dir"/>
+    <addaction name="action_copy_prev_bounding"/>
+    <addaction name="action_change_save_dir"/>
+    <addaction name="action_open_annotation"/>
+    <addaction name="action_save"/>
+    <addaction name="action_save_format"/>
+    <addaction name="action_save_as"/>
+    <addaction name="action_close"/>
+    <addaction name="action_reset_all"/>
+    <addaction name="action_delete_image"/>
+    <addaction name="action_quit"/>
+   </widget>
+   <widget class="QMenu" name="menuEdit">
+    <property name="title">
+     <string>Edit</string>
+    </property>
+    <addaction name="action_create"/>
+    <addaction name="action_copy"/>
+    <addaction name="action_delete"/>
+    <addaction name="separator"/>
+    <addaction name="action_color1"/>
+   </widget>
+   <widget class="QMenu" name="menuView">
+    <property name="title">
+     <string>View</string>
+    </property>
+    <addaction name="action_advanced_mode"/>
+    <addaction name="separator"/>
+    <addaction name="action_hide_all"/>
+    <addaction name="action_show_all"/>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>Help</string>
+    </property>
+    <addaction name="action_help"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuEdit"/>
+   <addaction name="menuView"/>
+   <addaction name="menuHelp"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QDockWidget" name="dock">
+   <property name="accessibleName">
+    <string/>
+   </property>
+   <property name="accessibleDescription">
+    <string/>
+   </property>
+   <property name="features">
+    <set>QDockWidget::DockWidgetMovable</set>
+   </property>
+   <property name="windowTitle">
+    <string>Box Labels</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>2</number>
+   </attribute>
+   <widget class="QWidget" name="dockWidgetContents">
+    <layout class="QGridLayout" name="gridLayout">
+     <property name="leftMargin">
+      <number>0</number>
+     </property>
+     <property name="topMargin">
+      <number>0</number>
+     </property>
+     <property name="rightMargin">
+      <number>0</number>
+     </property>
+     <property name="bottomMargin">
+      <number>0</number>
+     </property>
+     <item row="0" column="0">
+      <widget class="QWidget" name="label_list_container" native="true">
+       <layout class="QVBoxLayout" name="list_layout">
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
+        <item>
+         <widget class="QToolButton" name="edit_button">
+          <property name="text">
+           <string>...</string>
+          </property>
+          <property name="toolButtonStyle">
+           <enum>Qt::ToolButtonTextBesideIcon</enum>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="difficult_checkbox">
+          <property name="text">
+           <string>difficult</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QWidget" name="use_default_label_container" native="true">
+          <layout class="QHBoxLayout" name="horizontalLayout_2">
+           <item>
+            <widget class="QCheckBox" name="use_default_label_checkbox">
+             <property name="text">
+              <string>Use default label</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="default_label_text_line"/>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="combo_box"/>
+        </item>
+        <item>
+         <widget class="QListWidget" name="label_list"/>
+        </item>
+       </layout>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QDockWidget" name="file_dock">
+   <property name="features">
+    <set>QDockWidget::DockWidgetFloatable|QDockWidget::DockWidgetMovable</set>
+   </property>
+   <property name="allowedAreas">
+    <set>Qt::AllDockWidgetAreas</set>
+   </property>
+   <property name="windowTitle">
+    <string>File List</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>2</number>
+   </attribute>
+   <widget class="QWidget" name="dockWidgetContents_3">
+    <layout class="QGridLayout" name="gridLayout_2">
+     <property name="leftMargin">
+      <number>0</number>
+     </property>
+     <property name="topMargin">
+      <number>0</number>
+     </property>
+     <property name="rightMargin">
+      <number>0</number>
+     </property>
+     <property name="bottomMargin">
+      <number>0</number>
+     </property>
+     <item row="0" column="0">
+      <widget class="QWidget" name="file_list_container" native="true">
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
+        <item>
+         <widget class="QListWidget" name="file_list_widget"/>
+        </item>
+       </layout>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QToolBar" name="tools">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Vertical</enum>
+   </property>
+   <property name="toolButtonStyle">
+    <enum>Qt::ToolButtonTextUnderIcon</enum>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>LeftToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="action_open"/>
+   <addaction name="action_open_dir"/>
+   <addaction name="action_change_save_dir"/>
+   <addaction name="action_open_next_image"/>
+   <addaction name="action_open_prev_image"/>
+   <addaction name="action_verify"/>
+   <addaction name="action_save"/>
+   <addaction name="action_save_format"/>
+   <addaction name="separator"/>
+   <addaction name="action_create_mode"/>
+   <addaction name="action_copy"/>
+   <addaction name="action_delete"/>
+   <addaction name="separator"/>
+  </widget>
+  <action name="action_open">
+   <property name="icon">
+    <iconset resource="../resources.qrc">
+     <normaloff>:/open</normaloff>:/open</iconset>
+   </property>
+   <property name="text">
+    <string>Open</string>
+   </property>
+   <property name="toolTip">
+    <string>Open image or label file</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="action_quit">
+   <property name="icon">
+    <iconset resource="../resources.qrc">
+     <normaloff>:/quit</normaloff>:/quit</iconset>
+   </property>
+   <property name="text">
+    <string>Quit</string>
+   </property>
+   <property name="toolTip">
+    <string>Quit application</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
+   </property>
+  </action>
+  <action name="action_open_dir">
+   <property name="icon">
+    <iconset resource="../resources.qrc">
+     <normaloff>:/open</normaloff>:/open</iconset>
+   </property>
+   <property name="text">
+    <string>Open Dir</string>
+   </property>
+   <property name="toolTip">
+    <string>Open Dir</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+U</string>
+   </property>
+  </action>
+  <action name="action_copy_prev_bounding">
+   <property name="text">
+    <string>Copy previous Bounding Boxes in the current image </string>
+   </property>
+   <property name="toolTip">
+    <string>Copy previous Bounding Boxes in the current image </string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+V</string>
+   </property>
+  </action>
+  <action name="action_change_save_dir">
+   <property name="icon">
+    <iconset resource="../resources.qrc">
+     <normaloff>:/open</normaloff>:/open</iconset>
+   </property>
+   <property name="text">
+    <string>Change Save Dir</string>
+   </property>
+   <property name="toolTip">
+    <string>Change default saved Annotation dir</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+R</string>
+   </property>
+  </action>
+  <action name="action_open_annotation">
+   <property name="icon">
+    <iconset resource="../resources.qrc">
+     <normaloff>:/open</normaloff>:/open</iconset>
+   </property>
+   <property name="text">
+    <string>Open Annotation</string>
+   </property>
+   <property name="toolTip">
+    <string>Open an annotation file</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+O</string>
+   </property>
+  </action>
+  <action name="action_open_next_image">
+   <property name="icon">
+    <iconset resource="../resources.qrc">
+     <normaloff>:/next</normaloff>:/next</iconset>
+   </property>
+   <property name="text">
+    <string>Next Image</string>
+   </property>
+   <property name="toolTip">
+    <string>Open the next Image</string>
+   </property>
+   <property name="shortcut">
+    <string>D</string>
+   </property>
+  </action>
+  <action name="action_open_prev_image">
+   <property name="icon">
+    <iconset resource="../resources.qrc">
+     <normaloff>:/prev</normaloff>:/prev</iconset>
+   </property>
+   <property name="text">
+    <string>Prev Image</string>
+   </property>
+   <property name="toolTip">
+    <string>Open the previous Image</string>
+   </property>
+   <property name="shortcut">
+    <string>A</string>
+   </property>
+  </action>
+  <action name="action_verify">
+   <property name="icon">
+    <iconset resource="../resources.qrc">
+     <normaloff>:/verify</normaloff>:/verify</iconset>
+   </property>
+   <property name="text">
+    <string>Verify Image</string>
+   </property>
+   <property name="toolTip">
+    <string>Verify Image</string>
+   </property>
+   <property name="shortcut">
+    <string>Space</string>
+   </property>
+  </action>
+  <action name="action_save">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../resources.qrc">
+     <normaloff>:/save</normaloff>:/save</iconset>
+   </property>
+   <property name="text">
+    <string>Save</string>
+   </property>
+   <property name="toolTip">
+    <string>Save the labels to a file</string>
+   </property>
+  </action>
+  <action name="action_save_format">
+   <property name="icon">
+    <iconset resource="../resources.qrc">
+     <normaloff>:/format_voc</normaloff>:/format_voc</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;PascalVOC</string>
+   </property>
+   <property name="toolTip">
+    <string>Change save format</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl++</string>
+   </property>
+  </action>
+  <action name="action_save_as">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../resources.qrc">
+     <normaloff>:/save-as</normaloff>:/save-as</iconset>
+   </property>
+   <property name="text">
+    <string>Save As</string>
+   </property>
+   <property name="toolTip">
+    <string>Save the labels to a different file</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+S</string>
+   </property>
+  </action>
+  <action name="action_close">
+   <property name="icon">
+    <iconset resource="../resources.qrc">
+     <normaloff>:/close</normaloff>:/close</iconset>
+   </property>
+   <property name="text">
+    <string>Close</string>
+   </property>
+   <property name="toolTip">
+    <string>Close the current file</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+W</string>
+   </property>
+  </action>
+  <action name="action_delete_image">
+   <property name="icon">
+    <iconset resource="../resources.qrc">
+     <normaloff>:/close</normaloff>:/close</iconset>
+   </property>
+   <property name="text">
+    <string>Delete current image</string>
+   </property>
+   <property name="toolTip">
+    <string>Delete the current image</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+D</string>
+   </property>
+  </action>
+  <action name="action_reset_all">
+   <property name="icon">
+    <iconset resource="../resources.qrc">
+     <normaloff>:/resetall</normaloff>:/resetall</iconset>
+   </property>
+   <property name="text">
+    <string>Reset All</string>
+   </property>
+   <property name="toolTip">
+    <string>Reset All</string>
+   </property>
+  </action>
+  <action name="action_color1">
+   <property name="icon">
+    <iconset resource="../resources.qrc">
+     <normaloff>:/color_line</normaloff>:/color_line</iconset>
+   </property>
+   <property name="text">
+    <string>Box Line Color</string>
+   </property>
+   <property name="toolTip">
+    <string>Choose Box line color</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+L</string>
+   </property>
+  </action>
+  <action name="action_create_mode">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../resources.qrc">
+     <normaloff>:/new</normaloff>:/new</iconset>
+   </property>
+   <property name="text">
+    <string>Create RectBox</string>
+   </property>
+   <property name="toolTip">
+    <string>Draw a new box</string>
+   </property>
+   <property name="shortcut">
+    <string>W</string>
+   </property>
+  </action>
+  <action name="action_edit_mode">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../resources.qrc">
+     <normaloff>:/edit</normaloff>:/edit</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Edit\nRectBox</string>
+   </property>
+   <property name="toolTip">
+    <string>Move and edit Boxes</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+J</string>
+   </property>
+  </action>
+  <action name="action_create">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../resources.qrc">
+     <normaloff>:/new</normaloff>:/new</iconset>
+   </property>
+   <property name="text">
+    <string>Create RectBox</string>
+   </property>
+   <property name="toolTip">
+    <string>Draw a new box</string>
+   </property>
+   <property name="shortcut">
+    <string>W</string>
+   </property>
+  </action>
+  <action name="action_delete">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../resources.qrc">
+     <normaloff>:/delete</normaloff>:/delete</iconset>
+   </property>
+   <property name="text">
+    <string>Delete RectBox</string>
+   </property>
+   <property name="toolTip">
+    <string>Remove the box</string>
+   </property>
+   <property name="shortcut">
+    <string>Del</string>
+   </property>
+  </action>
+  <action name="action_copy">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../resources.qrc">
+     <normaloff>:/copy</normaloff>:/copy</iconset>
+   </property>
+   <property name="text">
+    <string>Duplicate RectBox</string>
+   </property>
+   <property name="toolTip">
+    <string>Create a duplicate of the selected box</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+D</string>
+   </property>
+  </action>
+  <action name="action_advanced_mode">
+   <property name="icon">
+    <iconset resource="../resources.qrc">
+     <normaloff>:/expert</normaloff>:/expert</iconset>
+   </property>
+   <property name="text">
+    <string>Advanced Mode</string>
+   </property>
+   <property name="toolTip">
+    <string>Swtich to advanced mode</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+A</string>
+   </property>
+  </action>
+  <action name="action_hide_all">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../resources.qrc">
+     <normaloff>:/hide</normaloff>:/hide</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Hide\nRectBox</string>
+   </property>
+   <property name="toolTip">
+    <string>Hide all bounding boxes</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+H</string>
+   </property>
+  </action>
+  <action name="action_show_all">
+   <property name="icon">
+    <iconset resource="../resources.qrc">
+     <normaloff>:/hide</normaloff>:/hide</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Show\nRectBox</string>
+   </property>
+   <property name="toolTip">
+    <string>Show all bounding boxes</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+A</string>
+   </property>
+  </action>
+  <action name="action_help">
+   <property name="icon">
+    <iconset resource="../resources.qrc">
+     <normaloff>:/help</normaloff>:/help</iconset>
+   </property>
+   <property name="text">
+    <string>Tutorial</string>
+   </property>
+   <property name="toolTip">
+    <string>Show demo</string>
+   </property>
+  </action>
+ </widget>
+ <resources>
+  <include location="../resources.qrc"/>
+ </resources>
+ <connections/>
+</ui>
