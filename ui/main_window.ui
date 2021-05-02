@@ -16,7 +16,11 @@
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout_3">
     <item>
-     <widget class="ZoomWidget" name="zoom_widget"/>
+     <widget class="ZoomWidget" name="zoom_widget">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+     </widget>
     </item>
     <item>
      <widget class="QScrollArea" name="scroll_area">
@@ -127,6 +131,9 @@
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <widget class="QDockWidget" name="dock">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="accessibleName">
     <string/>
    </property>
@@ -221,7 +228,7 @@
   </widget>
   <widget class="QDockWidget" name="file_dock">
    <property name="features">
-    <set>QDockWidget::DockWidgetFloatable|QDockWidget::DockWidgetMovable</set>
+    <set>QDockWidget::DockWidgetFloatable</set>
    </property>
    <property name="allowedAreas">
     <set>Qt::AllDockWidgetAreas</set>
@@ -632,6 +639,9 @@
    </property>
   </action>
   <action name="action_advanced_mode">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="icon">
     <iconset resource="../resources.qrc">
      <normaloff>:/expert</normaloff>:/expert</iconset>
@@ -665,6 +675,9 @@
    </property>
   </action>
   <action name="action_show_all">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="icon">
     <iconset resource="../resources.qrc">
      <normaloff>:/hide</normaloff>:/hide</iconset>
@@ -722,6 +735,9 @@
    </property>
   </action>
   <action name="action_zoom_in">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="icon">
     <iconset resource="../resources.qrc">
      <normaloff>:/zoom-in</normaloff>:/zoom-in</iconset>
@@ -737,6 +753,9 @@
    </property>
   </action>
   <action name="action_zoom_out">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="icon">
     <iconset resource="../resources.qrc">
      <normaloff>:/zoom-out</normaloff>:/zoom-out</iconset>
@@ -752,6 +771,9 @@
    </property>
   </action>
   <action name="action_zoom_org">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="icon">
     <iconset resource="../resources.qrc">
      <normaloff>:/zoom</normaloff>:/zoom</iconset>
@@ -767,6 +789,12 @@
    </property>
   </action>
   <action name="action_fit_window">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="icon">
     <iconset resource="../resources.qrc">
      <normaloff>:/fit-window</normaloff>:/fit-window</iconset>
@@ -782,6 +810,12 @@
    </property>
   </action>
   <action name="action_fit_width">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="icon">
     <iconset resource="../resources.qrc">
      <normaloff>:/fit-width</normaloff>:/fit-width</iconset>
@@ -820,6 +854,9 @@
    </property>
   </action>
   <action name="action_edit">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="icon">
     <iconset resource="../resources.qrc">
      <normaloff>:/edit</normaloff>:/edit</iconset>
@@ -832,6 +869,9 @@
    </property>
   </action>
   <action name="action_shape_line_color">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="icon">
     <iconset resource="../resources.qrc">
      <normaloff>:/color_line</normaloff>:/color_line</iconset>
@@ -844,6 +884,9 @@
    </property>
   </action>
   <action name="action_shape_fill_color">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="icon">
     <iconset resource="../resources.qrc">
      <normaloff>:/color</normaloff>:/color</iconset>
@@ -1406,6 +1449,102 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>difficult_checkbox</sender>
+   <signal>stateChanged(int)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>button_state()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>804</x>
+     <y>76</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>467</x>
+     <y>449</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>label_list</sender>
+   <signal>itemActivated(QListWidgetItem*)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>label_selection_changed()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>804</x>
+     <y>350</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>467</x>
+     <y>449</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>label_list</sender>
+   <signal>itemSelectionChanged()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>label_selection_changed()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>804</x>
+     <y>350</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>467</x>
+     <y>449</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>label_list</sender>
+   <signal>itemDoubleClicked(QListWidgetItem*)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>edit_label()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>804</x>
+     <y>350</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>467</x>
+     <y>449</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>label_list</sender>
+   <signal>itemChanged(QListWidgetItem*)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>label_item_changed()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>804</x>
+     <y>350</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>467</x>
+     <y>449</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>file_list_widget</sender>
+   <signal>itemDoubleClicked(QListWidgetItem*)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>file_item_double_clicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>804</x>
+     <y>722</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>467</x>
+     <y>449</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>open_file()</slot>
@@ -1439,5 +1578,9 @@
   <slot>choose_shape_fill_color()</slot>
   <slot>toggle_draw_square()</slot>
   <slot>toggle_paint_labels_option()</slot>
+  <slot>button_state()</slot>
+  <slot>label_selection_changed()</slot>
+  <slot>label_item_changed()</slot>
+  <slot>file_item_double_clicked()</slot>
  </slots>
 </ui>
