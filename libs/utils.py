@@ -26,8 +26,8 @@ def new_button(text, icon=None, slot=None):
     return b
 
 
-def new_action(parent, text, slot=None, shortcut=None, icon=None,
-               tip=None, checkable=False, enabled=True):
+def create_action(parent, text, slot=None, shortcut=None, icon=None,
+                  tip=None, checkable=False, enabled=True):
     """Create a new action and assign callbacks, shortcuts, etc."""
     a = QAction(text, parent)
     if icon is not None:

@@ -4,7 +4,7 @@ import os
 
 class Settings(object):
     def __init__(self):
-        # Be default, the home will be in the same folder as labelImg
+        # By default, the home will be in the same folder as labelImg
         home = os.path.expanduser("~")
         self.data = {}
         self.path = os.path.join(home, '.labelImgSettings.pkl')
