@@ -9,7 +9,7 @@ except ImportError:
 
 class ZoomWidget(QSpinBox):
 
-    def __init__(self, value=100):
+    def __init__(self, parent, value=100):
         super(ZoomWidget, self).__init__()
         self.setButtonSymbols(QAbstractSpinBox.NoButtons)
         self.setRange(1, 500)
